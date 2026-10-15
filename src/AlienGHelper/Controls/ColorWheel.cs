@@ -6,7 +6,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
-namespace TccG15.Controls;
+namespace AlienGHelper.Controls;
 
 /// <summary>
 /// Roda de cores (matiz no ângulo, saturação no raio, brilho máximo), no estilo do Alienware Command Center.

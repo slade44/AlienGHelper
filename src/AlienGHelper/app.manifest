@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
-  <assemblyIdentity version="0.1.0.0" name="TccG15.app"/>
+  <assemblyIdentity version="0.1.0.0" name="AlienGHelper.app"/>
 
   <!-- A interface WMI da Dell exige privilégios de administrador -->
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">

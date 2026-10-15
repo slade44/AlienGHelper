@@ -18,6 +18,6 @@ labels: bug
 1.
 2.
 
-**Logs** — attach `%APPDATA%\TccG15\startup.log` and `crash.log` if they exist, and the Keyboard window log for lighting issues.
+**Logs** — attach `%APPDATA%\AlienGHelper\startup.log` and `crash.log` if they exist, and the Keyboard window log for lighting issues.
 
 - [ ] Alienware Command Center and Dell Power Manager are closed

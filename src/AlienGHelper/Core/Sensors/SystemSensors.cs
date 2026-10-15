@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Management;
 using System.Runtime.InteropServices;
 
-namespace TccG15.Core.Sensors;
+namespace AlienGHelper.Core.Sensors;
 
 /// <summary>Uma leitura dos sensores. Campos nulos = não disponível neste computador.</summary>
 public sealed record SensorSnapshot(

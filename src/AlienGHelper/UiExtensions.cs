@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
-namespace TccG15;
+namespace AlienGHelper;
 
 /// <summary>Atalhos para ligar eventos por código (evita disparos durante o InitializeComponent).</summary>
 public static class UiExtensions

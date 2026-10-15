@@ -4,7 +4,7 @@ using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using Forms = System.Windows.Forms;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>
 /// Desenho do menu da bandeja no estilo do app: fundo do tema, destaque arredondado ao passar o mouse,

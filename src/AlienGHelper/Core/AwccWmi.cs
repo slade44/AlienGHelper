@@ -1,7 +1,7 @@
 using System.Management;
 using System.Runtime.InteropServices;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>Modos térmicos. Valores conforme WMI-AWCC-doc.md do projeto original.</summary>
 public enum ThermalMode : uint

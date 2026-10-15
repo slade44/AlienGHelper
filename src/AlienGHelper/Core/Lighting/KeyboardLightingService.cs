@@ -1,4 +1,4 @@
-namespace TccG15.Core.Lighting;
+namespace AlienGHelper.Core.Lighting;
 
 /// <summary>Pedido de iluminação (um por "aplicar").</summary>
 public sealed record LightingRequest(

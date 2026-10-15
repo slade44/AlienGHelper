@@ -2,7 +2,7 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Media;
 
-namespace TccG15;
+namespace AlienGHelper;
 
 internal static class Program
 {

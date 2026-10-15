@@ -7,9 +7,9 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
-using TccG15.Core;
+using AlienGHelper.Core;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 public partial class ProfilesPage : UserControl
 {

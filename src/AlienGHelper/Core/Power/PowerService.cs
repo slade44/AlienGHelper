@@ -1,6 +1,6 @@
 using Microsoft.Win32;
 
-namespace TccG15.Core.Power;
+namespace AlienGHelper.Core.Power;
 
 public enum CpuPowerState { Starting, NotAmd, PawnNotInstalled, AccessDenied, Unsupported, Error, Ready }
 

@@ -1,7 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:v="using:TccG15.Views"
-        x:Class="TccG15.Views.ExtraWindow"
+        xmlns:v="using:AlienGHelper.Views"
+        x:Class="AlienGHelper.Views.ExtraWindow"
         Title="Alien G-Helper — Extra Settings"
         Width="1000" Height="780" MinWidth="820" MinHeight="520"
         ExtendClientAreaToDecorationsHint="True"
@@ -95,7 +95,7 @@
                                 ToolTip.Tip="Reset curves, fail-safe and preferences to default"/>
                         <TextBlock Grid.Column="1" Classes="tertiary" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"
                                    Margin="12,0,0,0" TextAlignment="Right"
-                                   Text="Based on tcc-g15 by AlexIII (GPLv3) · compact edition"/>
+                                   Text="Based on tcc-g15 by AlexIII and G-Helper by seerge (GPLv3)"/>
                     </Grid>
                 </StackPanel>
             </ScrollViewer>

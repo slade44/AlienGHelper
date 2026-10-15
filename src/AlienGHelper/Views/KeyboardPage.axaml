@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:c="using:TccG15.Controls"
-             x:Class="TccG15.Views.KeyboardPage">
+             xmlns:c="using:AlienGHelper.Controls"
+             x:Class="AlienGHelper.Views.KeyboardPage">
     <!-- Janela do teclado no estilo do G-Helper (como a do ROG Azoth): seções em faixas e linhas "rótulo … controle" -->
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10,4,14,14">

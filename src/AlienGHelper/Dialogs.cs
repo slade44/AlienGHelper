@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
 
-namespace TccG15;
+namespace AlienGHelper;
 
 /// <summary>Caixas de mensagem simples (o Avalonia não traz MessageBox).</summary>
 public static class Dialogs

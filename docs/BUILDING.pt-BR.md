@@ -33,7 +33,7 @@ Tem que aparecer `8.0.xxx` (um número maior, como 9.0, também funciona).
 Com Git:
 
 ```powershell
-git clone https://github.com/<seu-usuario>/AlienGHelper.git
+git clone https://github.com/slade44/AlienGHelper.git
 cd AlienGHelper\src\AlienGHelper
 ```
 
@@ -102,7 +102,7 @@ Copie a pasta `publish` para um lugar fixo, por exemplo `C:\Program Files\Alien 
 3. Rode de novo o comando do passo 4.
 4. Copie o novo `publish\AlienGHelper.exe` por cima do antigo.
 
-As configurações ficam em `%APPDATA%\TccG15\settings.json` e **não se perdem** ao atualizar.
+As configurações ficam em `%APPDATA%\AlienGHelper\settings.json` e **não se perdem** ao atualizar.
 
 ---
 
@@ -113,8 +113,8 @@ As configurações ficam em `%APPDATA%\TccG15\settings.json` e **não se perdem*
 | `dotnet` não é reconhecido | Feche e abra o terminal depois de instalar o SDK; ou reinicie o PC. |
 | Erro de restauração do NuGet (`NU1101`, `NU1301`) | Verifique a internet e rode `dotnet nuget locals all --clear` e depois o comando de novo. |
 | `error CS…` / `AVLN…` ao compilar | Copie a mensagem inteira (arquivo, linha e texto) e mande para correção. |
-| "Another instance of this app is already running" | Feche o app pela bandeja ou finalize **AlienGHelper** no Gerenciador de Tarefas. A versão completa (TccG15) também conta como instância. |
-| Só aparece o processo, sem janela | Veja `%APPDATA%\TccG15\startup.log` (última etapa) e `%APPDATA%\TccG15\crash.log`. |
+| "Another instance of this app is already running" | Feche o app pela bandeja ou finalize **AlienGHelper** no Gerenciador de Tarefas. |
+| Só aparece o processo, sem janela | Veja `%APPDATA%\AlienGHelper\startup.log` (última etapa) e `%APPDATA%\AlienGHelper\crash.log`. |
 | Fans não mudam / iluminação volta ao padrão | Feche o AWCC e o Dell Power Manager. |
 | "PawnIO driver is not installed" | `winget install namazso.PawnIO` e reinicie o app. |
 
@@ -124,7 +124,7 @@ As configurações ficam em `%APPDATA%\TccG15\settings.json` e **não se perdem*
 
 ```powershell
 winget install Microsoft.DotNet.SDK.8          # uma vez
-git clone https://github.com/<seu-usuario>/AlienGHelper.git
+git clone https://github.com/slade44/AlienGHelper.git
 cd AlienGHelper\src\AlienGHelper
 dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
 .\publish\AlienGHelper.exe

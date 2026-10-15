@@ -11,7 +11,7 @@
     <AssemblyName>AlienGHelper</AssemblyName>
     <Product>Alien G-Helper</Product>
     <AssemblyTitle>Alien G-Helper</AssemblyTitle>
-    <RootNamespace>TccG15</RootNamespace>
+    <RootNamespace>AlienGHelper</RootNamespace>
     <Version>0.1.0</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <!-- menos memória: coleta de lixo sem a thread de segundo plano e sem o perfil dinâmico do JIT -->
@@ -42,13 +42,13 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\RyzenSMU.bin">
-      <LogicalName>TccG15.RyzenSMU.bin</LogicalName>
+      <LogicalName>AlienGHelper.RyzenSMU.bin</LogicalName>
     </EmbeddedResource>
     <!-- ícone da barra de título -->
     <AvaloniaResource Include="Resources\alien_icon.png" />
     <!-- ícone das janelas e da bandeja -->
     <EmbeddedResource Include="Resources\app.ico">
-      <LogicalName>TccG15.app.ico</LogicalName>
+      <LogicalName>AlienGHelper.app.ico</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 

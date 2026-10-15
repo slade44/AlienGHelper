@@ -3,9 +3,9 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Threading;
-using TccG15.Core;
+using AlienGHelper.Core;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>
 /// Janela "Fans and Power" (como a do G-Helper): limites de CPU/GPU à esquerda (<see cref="PowerPage"/>)

@@ -1,11 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Threading;
-using TccG15.Core;
-using TccG15.Core.Lighting;
-using TccG15.Core.Power;
-using TccG15.Core.Sensors;
+using AlienGHelper.Core;
+using AlienGHelper.Core.Lighting;
+using AlienGHelper.Core.Power;
+using AlienGHelper.Core.Sensors;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>
 /// Dono dos serviços e das janelas da versão compacta. Como no G-Helper, há uma janela principal
@@ -67,7 +67,7 @@ public sealed class AppHost
 
         try
         {
-            using var ico = typeof(AppHost).Assembly.GetManifestResourceStream("TccG15.app.ico");
+            using var ico = typeof(AppHost).Assembly.GetManifestResourceStream("AlienGHelper.app.ico");
             if (ico is not null) _icon = new WindowIcon(ico);
         }
         catch { }

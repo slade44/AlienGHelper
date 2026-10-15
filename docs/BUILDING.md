@@ -23,7 +23,7 @@ The first build downloads the NuGet packages (Avalonia, NvAPIWrapper, TraceEvent
 ## 2. Get the source
 
 ```powershell
-git clone https://github.com/<your-user>/AlienGHelper.git
+git clone https://github.com/slade44/AlienGHelper.git
 cd AlienGHelper\src\AlienGHelper
 ```
 
@@ -74,7 +74,7 @@ Output: `src\AlienGHelper\publish\AlienGHelper.exe`. Copy it to a permanent fold
 2. `git pull`
 3. Run the publish command again and replace the old `AlienGHelper.exe`.
 
-Settings live in `%APPDATA%\TccG15\settings.json` and survive updates.
+Settings live in `%APPDATA%\AlienGHelper\settings.json` and survive updates.
 
 ## 7. Troubleshooting
 
@@ -84,7 +84,7 @@ Settings live in `%APPDATA%\TccG15\settings.json` and survive updates.
 | NuGet restore errors (`NU1101`, `NU1301`) | Check the connection, run `dotnet nuget locals all --clear`, try again. |
 | `error CS…` / `AVLN…` | Open an issue with the full message (file, line and text). |
 | "Another instance of this app is already running" | Exit it from the tray or end **AlienGHelper** in Task Manager. |
-| Process runs but no window | Check `%APPDATA%\TccG15\startup.log` (last step) and `crash.log`. |
+| Process runs but no window | Check `%APPDATA%\AlienGHelper\startup.log` (last step) and `crash.log`. |
 | Fans or lighting go back to defaults | Close AWCC and Dell Power Manager. |
 | "PawnIO driver is not installed" | `winget install namazso.PawnIO` and restart the app. |
 

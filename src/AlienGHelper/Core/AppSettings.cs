@@ -2,7 +2,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 public sealed class AppSettings
 {
@@ -42,10 +42,27 @@ public sealed class AppSettings
     private static readonly JsonSerializerOptions Json = new() { WriteIndented = true };
 
     public static string FilePath => System.IO.Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AlienGHelper", "settings.json");
+
+    /// <summary>Pasta usada antes do nome "Alien G-Helper"; só é lida uma vez, para migrar.</summary>
+    private static string LegacyFilePath => System.IO.Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TccG15", "settings.json");
+
+    /// <summary>Na primeira execução com o nome novo, copia as configurações da pasta antiga.</summary>
+    private static void MigrateLegacy()
+    {
+        try
+        {
+            if (File.Exists(FilePath) || !File.Exists(LegacyFilePath)) return;
+            Directory.CreateDirectory(System.IO.Path.GetDirectoryName(FilePath)!);
+            File.Copy(LegacyFilePath, FilePath);
+        }
+        catch { }
+    }
 
     public static AppSettings Load()
     {
+        MigrateLegacy();
         try
         {
             if (File.Exists(FilePath))

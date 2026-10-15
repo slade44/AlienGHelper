@@ -2,17 +2,37 @@ using System.IO;
 using System.Diagnostics;
 using System.Text;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>
 /// Inicia o app como administrador no logon via Agendador de Tarefas.
-/// Gera o XML com "não parar na bateria" (essencial em notebook) – igual ao tcc_g15_task.xml original.
+/// Gera o XML com "não parar na bateria" (essencial em notebook).
 /// </summary>
 public static class Autorun
 {
-    private const string TaskName = "TCC_G15";
+    private const string TaskName = "AlienGHelper";
+    /// <summary>Nome usado antes do "Alien G-Helper"; só serve para migrar.</summary>
+    private const string LegacyTaskName = "TCC_G15";
 
     public static bool IsEnabled() => RunSchtasks($"/query /tn {TaskName}") == 0;
+
+    /// <summary>
+    /// Se a tarefa antiga (TCC_G15) aponta para este .exe, troca pela tarefa nova.
+    /// Tarefas antigas de outro programa (ex.: a edição completa) ficam como estão.
+    /// </summary>
+    public static void MigrateLegacy()
+    {
+        try
+        {
+            string? exe = Environment.ProcessPath;
+            if (string.IsNullOrEmpty(exe) || IsEnabled()) return;
+            if (RunSchtasks($"/query /tn {LegacyTaskName} /xml", out string xml) != 0) return;
+            if (xml.IndexOf(System.Security.SecurityElement.Escape(exe), StringComparison.OrdinalIgnoreCase) < 0
+                && xml.IndexOf(exe, StringComparison.OrdinalIgnoreCase) < 0) return;
+            if (Enable() == 0) RunSchtasks($"/delete /tn {LegacyTaskName} /f");
+        }
+        catch { }
+    }
 
     public static int Disable() => RunSchtasks($"/delete /tn {TaskName} /f");
 
@@ -49,7 +69,7 @@ public static class Autorun
             </Task>
             """;
 
-        string tmp = Path.Combine(Path.GetTempPath(), "tccg15_task.xml");
+        string tmp = Path.Combine(Path.GetTempPath(), "alienghelper_task.xml");
         File.WriteAllText(tmp, xml, Encoding.Unicode); // schtasks espera UTF-16
         try
         {
@@ -62,8 +82,11 @@ public static class Autorun
         }
     }
 
-    private static int RunSchtasks(string args)
+    private static int RunSchtasks(string args) => RunSchtasks(args, out _);
+
+    private static int RunSchtasks(string args, out string output)
     {
+        output = "";
         try
         {
             var psi = new ProcessStartInfo("schtasks", args)
@@ -74,7 +97,7 @@ public static class Autorun
                 RedirectStandardError = true,
             };
             using var p = Process.Start(psi)!;
-            p.StandardOutput.ReadToEnd();
+            output = p.StandardOutput.ReadToEnd();
             p.StandardError.ReadToEnd();
             p.WaitForExit();
             return p.ExitCode;

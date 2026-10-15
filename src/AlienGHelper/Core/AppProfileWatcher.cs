@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>App com janela aberta (para a lista "Running apps").</summary>
 public sealed record RunningApp(string Label, string Exe);

@@ -1,4 +1,4 @@
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 public enum FailSafeAction { None, TripToGMode, RestorePrevious }
 

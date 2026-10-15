@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Session;
 
-namespace TccG15.Core.Sensors;
+namespace AlienGHelper.Core.Sensors;
 
 /// <summary>Leitura do contador de FPS para a UI.</summary>
 public sealed record FpsSnapshot(
@@ -18,7 +18,7 @@ public sealed record FpsSnapshot(
 /// </summary>
 public sealed class FpsMonitor : IDisposable
 {
-    private const string SessionName = "TccG15-FPS";
+    private const string SessionName = "AlienGHelper-FPS";
     private static readonly Guid DxgiProvider = new("CA11C036-0102-4A2D-A6AD-F03CFED5D3C9");
     private static readonly Guid D3D9Provider = new("783ACA0A-790E-4D7F-8451-AA850511C6B9");
     private const int DxgiPresentStart = 42;
@@ -29,7 +29,7 @@ public sealed class FpsMonitor : IDisposable
 
     private static readonly HashSet<string> Ignored = new(StringComparer.OrdinalIgnoreCase)
     {
-        "dwm", "explorer", "TccG15", "ApplicationFrameHost", "SearchHost", "StartMenuExperienceHost",
+        "dwm", "explorer", "AlienGHelper", "ApplicationFrameHost", "SearchHost", "StartMenuExperienceHost",
         "ShellExperienceHost", "TextInputHost", "msedgewebview2", "steamwebhelper", "Discord",
     };
 

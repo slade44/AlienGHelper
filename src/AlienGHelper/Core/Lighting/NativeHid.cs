@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
 
-namespace TccG15.Core.Lighting;
+namespace AlienGHelper.Core.Lighting;
 
 internal static class NativeHid
 {

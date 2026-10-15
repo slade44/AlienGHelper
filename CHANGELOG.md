@@ -4,7 +4,7 @@ All notable changes to this project are documented here. Format based on [Keep a
 
 ## [0.1.0] — 2026-10-15
 
-First public release of **Alien G-Helper** (compact edition of TCC G15).
+First public release of **Alien G-Helper**, based on tcc-g15 and G-Helper.
 
 ### Added
 - Compact G-Helper-style main window: Fan Control, CPU power, System, Laptop Keyboard, Battery Charge Limit.

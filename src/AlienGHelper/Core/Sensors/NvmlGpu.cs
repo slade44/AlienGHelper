@@ -2,7 +2,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace TccG15.Core.Sensors;
+namespace AlienGHelper.Core.Sensors;
 
 /// <summary>
 /// GPU NVIDIA via NVML (nvml.dll, instalada junto com o driver). Sem drivers ou pacotes extras.

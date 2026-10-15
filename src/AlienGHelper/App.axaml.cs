@@ -3,10 +3,10 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using TccG15.Core;
-using TccG15.Views;
+using AlienGHelper.Core;
+using AlienGHelper.Views;
 
-namespace TccG15;
+namespace AlienGHelper;
 
 public partial class App : Application
 {
@@ -63,12 +63,12 @@ public partial class App : Application
 
     private async Task StartCoreAsync(string[] args)
     {
-        _singleInstance = new Mutex(true, @"Global\TccG15_SingleInstance", out bool created);
+        _singleInstance = new Mutex(true, @"Global\AlienGHelper_SingleInstance", out bool created);
         if (!created)
         {
             Trace("another instance holds the mutex");
             await Dialogs.ShowAsync(null, "Oh-oh",
-                "Another instance of this app is already running.\n\nIf no window or tray icon is visible, end \"TccG15\" in Task Manager and open the app again.");
+                "Another instance of this app is already running.\n\nIf no window or tray icon is visible, end \"AlienGHelper\" in Task Manager and open the app again.");
             _desktop?.Shutdown(1);
             return;
         }
@@ -151,12 +151,15 @@ public partial class App : Application
         if (!startMinimized) main.ShowFromTray();
         else _host.TrimSoon();
         Trace("ready");
+
+        // troca a tarefa "Run on Startup" do nome antigo (TCC_G15) pela nova, sem travar a abertura
+        _ = Task.Run(Autorun.MigrateLegacy);
     }
 
-    // ---------- registro da inicialização (%APPDATA%\TccG15\startup.log) ----------
+    // ---------- registro da inicialização (%APPDATA%\AlienGHelper\startup.log) ----------
 
     private static string StartupLogPath => System.IO.Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TccG15", "startup.log");
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AlienGHelper", "startup.log");
 
     private static void ResetTrace()
     {
@@ -177,7 +180,7 @@ public partial class App : Application
     // ---------- erros ----------
 
     private static string CrashLogPath => System.IO.Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TccG15", "crash.log");
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AlienGHelper", "crash.log");
 
     internal static void WriteCrashLog(Exception ex)
     {
@@ -191,7 +194,7 @@ public partial class App : Application
 
     private bool _crashShown;
 
-    /// <summary>Mostra o erro em vez de fechar em silêncio, e grava em %APPDATA%\TccG15\crash.log.</summary>
+    /// <summary>Mostra o erro em vez de fechar em silêncio, e grava em %APPDATA%\AlienGHelper\crash.log.</summary>
     private void ReportCrash(Exception ex)
     {
         WriteCrashLog(ex);

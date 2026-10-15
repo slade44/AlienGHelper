@@ -2,11 +2,11 @@ using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Threading;
-using TccG15.Controls;
-using TccG15.Core;
-using TccG15.Core.Sensors;
+using AlienGHelper.Controls;
+using AlienGHelper.Core;
+using AlienGHelper.Core.Sensors;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>
 /// Janela Monitor no estilo do G-Helper: fans, processador, GPU, memória, gráfico de atividade e FPS.

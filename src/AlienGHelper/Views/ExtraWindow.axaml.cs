@@ -5,9 +5,9 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
-using TccG15.Core;
+using AlienGHelper.Core;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>
 /// Janela "Extra" no estilo do G-Helper: aparência, fail-safe e outras preferências à esquerda,

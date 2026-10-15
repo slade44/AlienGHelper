@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>Janela do teclado (como a do ROG Azoth no G-Helper). A lógica fica na <see cref="KeyboardPage"/>.</summary>
 public partial class KeyboardWindow : Window

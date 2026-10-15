@@ -4,9 +4,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
-using TccG15.Core;
+using AlienGHelper.Core;
 
-namespace TccG15;
+namespace AlienGHelper;
 
 /// <summary>
 /// Aparência do app no Avalonia: tema (System/Dark/Light), estilo da janela (Mica, Acrylic, Tabbed ou Flat),

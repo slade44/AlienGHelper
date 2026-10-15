@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using Forms = System.Windows.Forms;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>
 /// Tecla G-Mode do notebook (VK 0x80 = F17). Usa uma janela "message-only" (NativeWindow do WinForms)
@@ -31,7 +31,7 @@ public sealed class HotKeyService : IDisposable
 
     public HotKeyService(uint virtualKey)
     {
-        _sink.CreateHandle(new Forms.CreateParams { Caption = "TccG15HotKeySink", Parent = HWND_MESSAGE });
+        _sink.CreateHandle(new Forms.CreateParams { Caption = "AlienGHelperHotKeySink", Parent = HWND_MESSAGE });
         _sink.Hit = () => Pressed?.Invoke();
         Registered = RegisterHotKey(_sink.Handle, HotKeyId, 0, virtualKey);
     }

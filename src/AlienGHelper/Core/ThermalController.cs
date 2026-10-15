@@ -1,4 +1,4 @@
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>Port de AWCCThermal.py: índice 0 = fan da CPU, 1 = fan da GPU.</summary>
 public sealed class ThermalController

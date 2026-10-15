@@ -8,10 +8,10 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
 using Microsoft.Win32;
-using TccG15.Core;
-using TccG15.Core.Lighting;
+using AlienGHelper.Core;
+using AlienGHelper.Core.Lighting;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 public partial class KeyboardPage : UserControl
 {

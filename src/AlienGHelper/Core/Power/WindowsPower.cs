@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace TccG15.Core.Power;
+namespace AlienGHelper.Core.Power;
 
 /// <summary>
 /// Configurações de energia do Windows: modo de energia (overlay de Configurações &gt; Sistema &gt; Energia)

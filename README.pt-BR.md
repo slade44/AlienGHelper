@@ -59,7 +59,7 @@ Para abrir com o Windows: **Settings › Other › Run on Startup** (marque de n
 
 ```powershell
 winget install Microsoft.DotNet.SDK.8
-git clone https://github.com/<seu-usuario>/AlienGHelper.git
+git clone https://github.com/slade44/AlienGHelper.git
 cd AlienGHelper
 dotnet publish src/AlienGHelper/AlienGHelper.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
 .\publish\AlienGHelper.exe
@@ -71,11 +71,11 @@ Passo a passo completo e solução de problemas: **[docs/BUILDING.pt-BR.md](docs
 
 | O quê | Onde |
 |---|---|
-| Configurações (curvas, cores, perfis, limites) | `%APPDATA%\TccG15\settings.json` |
-| Logs de inicialização / erro | `%APPDATA%\TccG15\startup.log`, `crash.log` |
+| Configurações (curvas, cores, perfis, limites) | `%APPDATA%\AlienGHelper\settings.json` |
+| Logs de inicialização / erro | `%APPDATA%\AlienGHelper\startup.log`, `crash.log` |
 | Modo de carga da bateria | BIOS da Dell |
 | Cores do teclado ("Save to keyboard memory") | controlador do teclado |
-| Iniciar com o Windows | tarefa `TCC_G15` no Agendador de Tarefas |
+| Iniciar com o Windows | tarefa `AlienGHelper` no Agendador de Tarefas |
 
 ## Avisos
 

@@ -1,6 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="TccG15.Views.PowerPage">
+             x:Class="AlienGHelper.Views.PowerPage">
     <!-- Coluna esquerda da janela "Fans and Power", no estilo do G-Helper: abas CPU / GPU / Advanced e sliders -->
     <Grid RowDefinitions="Auto,Auto,*">
 

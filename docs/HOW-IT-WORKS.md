@@ -72,4 +72,4 @@ Modes: 1 Standard · 2 ExpressCharge · 3 Primarily AC · 4 Adaptive · 5 Custom
 
 ## Settings
 
-`%APPDATA%\TccG15\settings.json` (shared with the full TCC G15 edition). Saved by the controller loop when something changes.
+`%APPDATA%\AlienGHelper\settings.json` (along with `startup.log` and `crash.log`). Saved by the controller loop when something changes.

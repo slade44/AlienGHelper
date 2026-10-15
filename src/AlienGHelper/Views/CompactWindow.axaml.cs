@@ -6,12 +6,12 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
-using TccG15.Controls;
-using TccG15.Core;
-using TccG15.Core.Power;
-using TccG15.Core.Sensors;
+using AlienGHelper.Controls;
+using AlienGHelper.Core;
+using AlienGHelper.Core.Power;
+using AlienGHelper.Core.Sensors;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>
 /// Interface compacta, no estilo do G-Helper: modo térmico, modo de energia do Windows, um resumo dos

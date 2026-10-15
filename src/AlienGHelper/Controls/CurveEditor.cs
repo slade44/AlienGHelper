@@ -3,9 +3,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
-using TccG15.Core;
+using AlienGHelper.Core;
 
-namespace TccG15.Controls;
+namespace AlienGHelper.Controls;
 
 /// <summary>
 /// Editor gráfico da curva temperatura → velocidade (estilo G-Helper).

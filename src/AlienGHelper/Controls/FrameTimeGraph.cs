@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 
-namespace TccG15.Controls;
+namespace AlienGHelper.Controls;
 
 /// <summary>Gráfico de frametime (ms) dos últimos quadros: linha na cor de destaque, escala automática.</summary>
 public sealed class FrameTimeGraph : Control

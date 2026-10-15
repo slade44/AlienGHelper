@@ -1,6 +1,6 @@
 using System.Management;
 
-namespace TccG15.Core.Power;
+namespace AlienGHelper.Core.Power;
 
 /// <summary>Modos de carga da bateria da BIOS Dell (mesmos valores do Dell Power Manager).</summary>
 public enum ChargeMode : byte

@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
 
-namespace TccG15.Controls;
+namespace AlienGHelper.Controls;
 
 /// <summary>
 /// Gráfico de atividade com duas linhas (CPU e GPU). A métrica é escolhida pelo usuário:

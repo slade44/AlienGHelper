@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:c="using:TccG15.Controls"
-             x:Class="TccG15.Views.ProfilesPage">
+             xmlns:c="using:AlienGHelper.Controls"
+             x:Class="AlienGHelper.Views.ProfilesPage">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="0,0,0,12">
 

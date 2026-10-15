@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="TccG15.App"
+             x:Class="AlienGHelper.App"
              RequestedThemeVariant="Dark">
 
     <!-- Paleta no estilo do Windows 11 (as mesmas cores do WPF-UI), clara e escura.

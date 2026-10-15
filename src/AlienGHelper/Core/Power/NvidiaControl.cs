@@ -8,7 +8,7 @@ using NvAPIWrapper.Native.General;
 using NvAPIWrapper.Native.GPU;
 using NvAPIWrapper.Native.GPU.Structures;
 
-namespace TccG15.Core.Power;
+namespace AlienGHelper.Core.Power;
 
 /// <summary>
 /// Controle da GPU NVIDIA dedicada via NvAPIWrapper (NVAPI do driver):

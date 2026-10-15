@@ -1,6 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="TccG15.Views.CompactWindow"
+        x:Class="AlienGHelper.Views.CompactWindow"
         Title="Alien G-Helper"
         Width="500" SizeToContent="Height" CanResize="False"
         WindowStartupLocation="CenterScreen"

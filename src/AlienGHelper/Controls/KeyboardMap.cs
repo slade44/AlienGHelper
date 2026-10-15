@@ -6,7 +6,7 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Threading;
 
-namespace TccG15.Controls;
+namespace AlienGHelper.Controls;
 
 /// <summary>
 /// Desenho do teclado do notebook (layout de G15 com teclado numérico), dividido em N zonas da esquerda

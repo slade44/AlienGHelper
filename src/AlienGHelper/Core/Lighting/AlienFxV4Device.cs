@@ -4,7 +4,7 @@
 using System.Diagnostics;
 using Microsoft.Win32.SafeHandles;
 
-namespace TccG15.Core.Lighting;
+namespace AlienGHelper.Core.Lighting;
 
 public enum LightActionType : byte
 {

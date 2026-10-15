@@ -4,7 +4,7 @@ using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using Forms = System.Windows.Forms;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>Ícone de bandeja que mostra GPU/CPU em tempo real (port de QGaugeTrayIcon).</summary>
 public sealed class TrayService : IDisposable
@@ -129,7 +129,7 @@ public sealed class TrayService : IDisposable
     {
         if (_icon is not null) return;   // fixo; temperaturas, RPM e modo ficam na dica
         int size = Math.Max(16, Forms.SystemInformation.SmallIconSize.Width);
-        using var stream = typeof(TrayService).Assembly.GetManifestResourceStream("TccG15.app.ico");
+        using var stream = typeof(TrayService).Assembly.GetManifestResourceStream("AlienGHelper.app.ico");
         if (stream is null) return;
         _icon = new Icon(stream, size, size);
         _notify.Icon = _icon;

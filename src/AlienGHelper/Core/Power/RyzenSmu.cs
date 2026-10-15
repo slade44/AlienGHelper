@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace TccG15.Core.Power;
+namespace AlienGHelper.Core.Power;
 
 public enum SmuStatus : uint
 {
@@ -79,7 +79,7 @@ public sealed class RyzenSmu : IDisposable
     private static byte[]? LoadModuleBlob()
     {
         var asm = Assembly.GetExecutingAssembly();
-        using var s = asm.GetManifestResourceStream("TccG15.RyzenSMU.bin");
+        using var s = asm.GetManifestResourceStream("AlienGHelper.RyzenSMU.bin");
         if (s is null) return null;
         using var ms = new MemoryStream();
         s.CopyTo(ms);

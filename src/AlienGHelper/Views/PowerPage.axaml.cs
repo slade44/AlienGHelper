@@ -5,10 +5,10 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Threading;
-using TccG15.Core;
-using TccG15.Core.Power;
+using AlienGHelper.Core;
+using AlienGHelper.Core.Power;
 
-namespace TccG15.Views;
+namespace AlienGHelper.Views;
 
 /// <summary>
 /// Aba Power: limites da CPU (SPL / sPPT / fPPT pela SMU, via PawnIO), modo de energia e boost do Windows,

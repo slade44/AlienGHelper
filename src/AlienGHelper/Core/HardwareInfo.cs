@@ -1,6 +1,6 @@
 using System.Management;
 
-namespace TccG15.Core;
+namespace AlienGHelper.Core;
 
 /// <summary>Port de DetectHardware.py (operação lenta: rodar em background).</summary>
 public static class HardwareInfo

@@ -3,7 +3,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace TccG15.Core.Lighting;
+namespace AlienGHelper.Core.Lighting;
 
 public sealed class AlienFxDeviceInfo
 {

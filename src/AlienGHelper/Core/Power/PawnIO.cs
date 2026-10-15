@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
 
-namespace TccG15.Core.Power;
+namespace AlienGHelper.Core.Power;
 
 /// <summary>
 /// Acesso ao driver PawnIO (https://github.com/namazso/PawnIO) direto por DeviceIoControl,
