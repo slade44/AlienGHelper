@@ -1,0 +1,491 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TccG15.App"
+             RequestedThemeVariant="Dark">
+
+    <!-- Paleta no estilo do Windows 11 (as mesmas cores do WPF-UI), clara e escura.
+         AccentBrush / OnAccentBrush / AccentSoftBrush são definidos pelo AppTheme em tempo de execução. -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="CardBrush" Color="#0DFFFFFF"/>
+                    <SolidColorBrush x:Key="CardStrokeBrush" Color="#19000000"/>
+                    <SolidColorBrush x:Key="ControlFillBrush" Color="#0FFFFFFF"/>
+                    <SolidColorBrush x:Key="ControlFillSecondaryBrush" Color="#15FFFFFF"/>
+                    <SolidColorBrush x:Key="ControlStrokeBrush" Color="#14FFFFFF"/>
+                    <SolidColorBrush x:Key="SubtleFillBrush" Color="#0FFFFFFF"/>
+                    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#FFFFFFFF"/>
+                    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#C5FFFFFF"/>
+                    <SolidColorBrush x:Key="TextTertiaryBrush" Color="#87FFFFFF"/>
+                    <SolidColorBrush x:Key="LayerBrush" Color="#FF2B2B2E"/>
+                    <!-- listas e botões chapados como os do G-Helper: cinza sólido, sem borda -->
+                    <SolidColorBrush x:Key="ComboBoxBackground" Color="#FF2D2D2D"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#FF383838"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPressed" Color="#FF262626"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundDisabled" Color="#FF262626"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundFocused" Color="#FF2D2D2D"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushPressed" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushDisabled" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushFocused" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxDropDownGlyphForeground" Color="#FFB4B4B4"/>
+                    <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#FF2B2B2B"/>
+                    <SolidColorBrush x:Key="ButtonBackground" Color="#FF2D2D2D"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF383838"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#FF262626"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="#FF262626"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent"/>
+                    <SolidColorBrush x:Key="TextControlBackground" Color="#FF2D2D2D"/>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#FF383838"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="CardBrush" Color="#B3FFFFFF"/>
+                    <SolidColorBrush x:Key="CardStrokeBrush" Color="#0F000000"/>
+                    <SolidColorBrush x:Key="ControlFillBrush" Color="#B3FFFFFF"/>
+                    <SolidColorBrush x:Key="ControlFillSecondaryBrush" Color="#80F9F9F9"/>
+                    <SolidColorBrush x:Key="ControlStrokeBrush" Color="#0F000000"/>
+                    <SolidColorBrush x:Key="SubtleFillBrush" Color="#09000000"/>
+                    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#E4000000"/>
+                    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#9E000000"/>
+                    <SolidColorBrush x:Key="TextTertiaryBrush" Color="#72000000"/>
+                    <SolidColorBrush x:Key="LayerBrush" Color="#FFFBFBFC"/>
+                    <!-- listas e botões chapados como os do G-Helper: cinza sólido, sem borda -->
+                    <SolidColorBrush x:Key="ComboBoxBackground" Color="#FFE4E4E4"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#FFD8D8D8"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPressed" Color="#FFEDEDED"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundDisabled" Color="#FFEDEDED"/>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundFocused" Color="#FFE4E4E4"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushPressed" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushDisabled" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushFocused" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ComboBoxDropDownGlyphForeground" Color="#FF5A5A5A"/>
+                    <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#FFF5F5F5"/>
+                    <SolidColorBrush x:Key="ButtonBackground" Color="#FFE4E4E4"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FFD8D8D8"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#FFEDEDED"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="#FFEDEDED"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent"/>
+                    <SolidColorBrush x:Key="TextControlBackground" Color="#FFE4E4E4"/>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#FFD8D8D8"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <CornerRadius x:Key="ControlCornerRadius">3</CornerRadius>
+            <Thickness x:Key="ComboBoxBorderThemeThickness">0</Thickness>
+            <Thickness x:Key="ButtonBorderThemeThickness">0</Thickness>
+            <SolidColorBrush x:Key="AccentBrush" Color="#A6E08E"/>
+            <SolidColorBrush x:Key="OnAccentBrush" Color="#141614"/>
+            <SolidColorBrush x:Key="AccentSoftBrush" Color="#1FA6E08E"/>
+            <SolidColorBrush x:Key="SegActiveBrush" Color="#A6E08E"/>
+            <SolidColorBrush x:Key="SegActiveTextBrush" Color="#141614"/>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme/>
+
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        </Style>
+
+        <!-- cartões -->
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20,16"/>
+        </Style>
+        <Style Selector="Border.tile">
+            <Setter Property="Background" Value="{DynamicResource ControlFillBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style Selector="Border.badge">
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="10,3"/>
+        </Style>
+
+        <!-- texto -->
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style Selector="TextBlock.caps">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextTertiaryBrush}"/>
+        </Style>
+        <Style Selector="TextBlock.secondary">
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+        </Style>
+        <Style Selector="TextBlock.tertiary">
+            <Setter Property="Foreground" Value="{DynamicResource TextTertiaryBrush}"/>
+        </Style>
+        <Style Selector="TextBlock.value">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <!-- seletor segmentado (pill): opção ativa na cor de destaque -->
+        <Style Selector="Border.pill">
+            <Setter Property="CornerRadius" Value="9"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ControlFillBrush}"/>
+        </Style>
+        <Style Selector="Border.seg">
+            <Setter Property="CornerRadius" Value="7"/>
+            <Setter Property="Padding" Value="12,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style Selector="Border.seg > TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        </Style>
+        <Style Selector="Border.seg.small">
+            <Setter Property="Padding" Value="11,3"/>
+        </Style>
+        <Style Selector="Border.seg.small > TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style Selector="Border.seg:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SubtleFillBrush}"/>
+        </Style>
+        <Style Selector="Border.seg.active">
+            <Setter Property="Background" Value="{DynamicResource SegActiveBrush}"/>
+        </Style>
+        <Style Selector="Border.seg.active > TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SegActiveTextBrush}"/>
+        </Style>
+
+        <!-- itens selecionáveis criados por código (zonas, perfis) -->
+        <Style Selector="Border.item">
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ControlFillBrush}"/>
+        </Style>
+        <Style Selector="Border.item.active">
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}"/>
+        </Style>
+
+        <!-- menu lateral -->
+        <Style Selector="Button.nav">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        <Style Selector="Button.nav.active /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+        </Style>
+        <!-- menu recolhido: só os ícones, centralizados no botão -->
+        <Style Selector="Grid.collapsed Button.nav">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.nav TextBlock">
+            <Setter Property="Margin" Value="12,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.nav Path">
+            <Setter Property="Stroke" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="StrokeThickness" Value="1.7"/>
+            <Setter Property="StrokeJoin" Value="Round"/>
+            <Setter Property="StrokeLineCap" Value="Round"/>
+        </Style>
+        <Style Selector="Button.nav Path.filled">
+            <Setter Property="Fill" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+        </Style>
+        <Style Selector="Button.subtle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <!-- Estilo "Studio" (dashboard escuro, inspirado no shadcn/ui): números e rótulos em fonte mono -->
+        <Style Selector="Window.studio TextBlock.value, Window.studio TextBlock.num, Window.studio TextBlock.caps">
+            <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Courier New"/>
+        </Style>
+        <Style Selector="Window.studio TextBlock.caps">
+            <Setter Property="FontSize" Value="10.5"/>
+            <Setter Property="LetterSpacing" Value="0.6"/>
+        </Style>
+        <Style Selector="Window.studio TextBlock.title">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style Selector="Window.studio Border.card">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style Selector="Window.studio Border.badge">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="8,2"/>
+        </Style>
+        <Style Selector="Window.studio Border.badge TextBlock">
+            <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Courier New"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+        <Style Selector="Window.studio Button.nav.active /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style Selector="Window.studio ProgressBar.thin">
+            <Setter Property="Background" Value="#26FFFFFF"/>
+        </Style>
+
+        <!-- barras finas e chaves sem o texto On/Off -->
+        <Style Selector="ProgressBar.thin">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="3"/>
+            <Setter Property="Height" Value="3"/>
+            <Setter Property="CornerRadius" Value="2"/>
+        </Style>
+        <Style Selector="ToggleSwitch">
+            <Setter Property="OnContent" Value=""/>
+            <Setter Property="OffContent" Value=""/>
+        </Style>
+
+        <!-- ===================== Estilo G-Helper (versão compacta) ===================== -->
+        <Style Selector="TextBlock.sec">
+            <Setter Property="FontSize" Value="14.5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock.stat">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+        </Style>
+        <Style Selector="Path.icon">
+            <Setter Property="Stroke" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="StrokeThickness" Value="1.8"/>
+            <Setter Property="StrokeJoin" Value="Round"/>
+            <Setter Property="StrokeLineCap" Value="Round"/>
+        </Style>
+        <Style Selector="Path.icon.filled">
+            <Setter Property="Fill" Value="{DynamicResource TextPrimaryBrush}"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+        </Style>
+
+        <!-- botões grandes (modo, energia) -->
+        <Style Selector="Border.big">
+            <Setter Property="Height" Value="72"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource ControlFillBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+        </Style>
+        <Style Selector="Border.big:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+        </Style>
+        <Style Selector="Border.big.active">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}"/>
+        </Style>
+        <Style Selector="Border.big > StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Spacing" Value="5"/>
+        </Style>
+        <Style Selector="Border.big TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Border.big Viewbox">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Grid.row4 > Border.big">
+            <Setter Property="Margin" Value="3,0"/>
+        </Style>
+        <Style Selector="Border.divider">
+            <Setter Property="Height" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="Margin" Value="0,14"/>
+        </Style>
+        <Style Selector="Button.foot">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Margin" Value="3,0"/>
+        </Style>
+        <Style Selector="TextBlock.mini">
+            <Setter Property="FontSize" Value="12.5"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+        </Style>
+
+        <!-- faixa de título de seção: ícone + texto em negrito sobre um fundo um tom acima -->
+        <Style Selector="Border.ghsec">
+            <Setter Property="Background" Value="{DynamicResource SubtleFillBrush}"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="MinHeight" Value="34"/>
+            <Setter Property="Margin" Value="0,10,0,2"/>
+        </Style>
+        <Style Selector="Border.ghsec.first">
+            <Setter Property="Margin" Value="0,0,0,2"/>
+        </Style>
+        <Style Selector="Border.ghsec TextBlock.sec">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <!-- linha "rótulo ............ controle" -->
+        <Style Selector="Grid.ghrow">
+            <Setter Property="MinHeight" Value="40"/>
+            <Setter Property="Margin" Value="10,0"/>
+        </Style>
+        <Style Selector="Grid.ghrow > TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13.5"/>
+        </Style>
+        <Style Selector="Grid.ghrow > ComboBox, Grid.ghrow > TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <!-- linhas da janela Monitor: compactas, rótulos com a largura do maior (SharedSizeGroup) -->
+        <Style Selector="Grid.mrow">
+            <Setter Property="MinHeight" Value="28"/>
+            <Setter Property="Margin" Value="10,1"/>
+        </Style>
+        <Style Selector="Grid.mrow > TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13.5"/>
+        </Style>
+        <!-- linha de slider: nome à esquerda, valor em negrito à direita, slider embaixo -->
+        <Style Selector="Grid.slhead">
+            <Setter Property="Margin" Value="10,12,10,0"/>
+        </Style>
+        <Style Selector="Grid.slhead > TextBlock">
+            <Setter Property="FontSize" Value="13.5"/>
+        </Style>
+        <Style Selector="Grid.slhead > TextBlock.v">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="Slider.gh">
+            <Setter Property="Margin" Value="10,-4,10,-6"/>
+        </Style>
+        <!-- botões chapados -->
+        <Style Selector="Button.gh">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="14,0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <!-- abas CPU / GPU / Advanced (caixa com borda de destaque na ativa) -->
+        <Style Selector="Border.ghtab">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="3,0"/>
+            <Setter Property="Background" Value="{DynamicResource ControlFillBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+        </Style>
+        <Style Selector="Border.ghtab:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+        </Style>
+        <Style Selector="Border.ghtab.active">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+        </Style>
+        <Style Selector="Border.ghtab > TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13.5"/>
+        </Style>
+        <!-- painel de aviso/observação -->
+        <Style Selector="Border.ghnote">
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Margin" Value="10,8,10,0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+        </Style>
+        <Style Selector="TextBlock.note">
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="10,4,10,0"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextTertiaryBrush}"/>
+        </Style>
+
+        <!-- ===== caixas de seleção com as cores do tema (quadrado arredondado, destaque quando marcada) ===== -->
+        <!-- valores do template só cedem a estilos com pseudo-classe (:unchecked, :checked…); o raio vem do CheckBox -->
+        <Style Selector="CheckBox">
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="CheckBox:unchecked /template/ Border#NormalRectangle">
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource TextTertiaryBrush}"/>
+        </Style>
+        <Style Selector="CheckBox:checked /template/ Border#NormalRectangle">
+            <Setter Property="BorderThickness" Value="1.5"/>
+        </Style>
+        <Style Selector="CheckBox:unchecked:pointerover /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource ControlFillSecondaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+        </Style>
+        <Style Selector="CheckBox:unchecked:pressed /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+        </Style>
+        <Style Selector="CheckBox:checked:not(:pointerover) /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+        </Style>
+        <Style Selector="CheckBox:checked:pointerover /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource TextPrimaryBrush}"/>
+        </Style>
+        <Style Selector="CheckBox:checked:pressed /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Opacity" Value="0.85"/>
+        </Style>
+        <Style Selector="CheckBox:checked /template/ Path#CheckGlyph, CheckBox:checked:pointerover /template/ Path#CheckGlyph, CheckBox:checked:pressed /template/ Path#CheckGlyph">
+            <Setter Property="Fill" Value="{DynamicResource OnAccentBrush}"/>
+        </Style>
+        <Style Selector="CheckBox:disabled /template/ Border#NormalRectangle">
+            <Setter Property="Opacity" Value="0.45"/>
+        </Style>
+        <Style Selector="CheckBox:pointerover /template/ ContentPresenter#ContentPresenter, CheckBox:checked /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        </Style>
+    </Application.Styles>
+</Application>

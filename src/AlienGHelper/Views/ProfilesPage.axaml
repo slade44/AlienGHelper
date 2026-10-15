@@ -1,0 +1,133 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="using:TccG15.Controls"
+             x:Class="TccG15.Views.ProfilesPage">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="0,0,0,12">
+
+            <!-- Lista de perfis (estilo G-Helper) -->
+            <Border Classes="ghsec first">
+                <Grid ColumnDefinitions="Auto,*">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M7 7 H17 C20 7 22 10 22 14 C22 17 20.5 18.5 19 18.5 C17.5 18.5 16.5 17 15.5 15.5 H8.5 C7.5 17 6.5 18.5 5 18.5 C3.5 18.5 2 17 2 14 C2 10 4 7 7 7 Z M7 9.7 V14.3 M4.7 12 H9.3"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="App Profiles"/>
+                    </StackPanel>
+                    <CheckBox x:Name="EnabledToggle" Grid.Column="1" Content="Enabled" MinWidth="0" Padding="6,0,0,0"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <StackPanel Orientation="Horizontal" Margin="10,8,10,0">
+                <Ellipse x:Name="StatusDot" Width="7" Height="7" Fill="Gray" VerticalAlignment="Center"/>
+                <TextBlock x:Name="StatusText" Text="No profile active" FontSize="12" Margin="7,0,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
+            </StackPanel>
+            <TextBlock Classes="note" Margin="10,6,10,0"
+                       Text="While an app or game in this list is running, its thermal mode and fan curve are used. When it closes, the previous mode comes back. If several are running, the first one in the list wins."/>
+
+            <Grid Margin="10,12,10,0" ColumnDefinitions="*,Auto,Auto,Auto">
+                <ComboBox x:Name="RunningBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="32" DisplayMemberBinding="{Binding Label}"
+                          ToolTip.Tip="Apps with an open window"/>
+                <Button Grid.Column="1" Classes="gh" Margin="6,0,0,0" Width="32" Padding="0"
+                        Click="RefreshRunning_Click" ToolTip.Tip="Refresh the list of running apps">
+                    <Viewbox Width="14" Height="14"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M20 12 A8 8 0 1 1 17.7 6.3 M20 4 V9 H15"/></Canvas></Viewbox>
+                </Button>
+                <Button Grid.Column="2" Classes="gh accent" Margin="6,0,0,0" Content="Add"
+                        Click="AddRunning_Click" ToolTip.Tip="Create a profile for the selected app"/>
+                <Button Grid.Column="3" Classes="gh" Margin="6,0,0,0" Content="Browse…"
+                        Click="Browse_Click" ToolTip.Tip="Pick a game or app executable (.exe)"/>
+            </Grid>
+
+            <StackPanel x:Name="ProfileList" Margin="10,12,10,0"/>
+            <TextBlock x:Name="EmptyText" Margin="0,6,0,0" FontSize="12" HorizontalAlignment="Center" Foreground="{DynamicResource TextTertiaryBrush}"
+                       Text="No profiles yet. Open a game, pick it above and press Add."/>
+
+            <!-- Editor do perfil selecionado: é movido para logo abaixo da linha do perfil (acordeão) -->
+            <Border Classes="tile" x:Name="EditorCard" CornerRadius="4" Margin="12,-2,0,12" Padding="16,12,16,12" IsVisible="False"
+                    >
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBox x:Name="NameBox" FontSize="16" FontWeight="SemiBold" MaxLength="60" MaxWidth="360" HorizontalAlignment="Left"
+                                     LostFocus="NameBox_LostFocus" KeyDown="NameBox_KeyDown" ToolTip.Tip="Profile name"/>
+                            <TextBlock x:Name="ExeText" FontSize="12" Margin="2,6,0,0" Foreground="{DynamicResource TextTertiaryBrush}"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" VerticalAlignment="Top" CornerRadius="9" Padding="2" BorderThickness="1"
+                                    BorderBrush="{DynamicResource ControlStrokeBrush}"
+                                    Background="{DynamicResource ControlFillBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Classes="seg" x:Name="ModeQuiet" Tag="Quiet" PointerReleased="Mode_Click"
+                                           >
+                                        <TextBlock Text="Silent" FontSize="13" FontWeight="SemiBold"/>
+                                    </Border>
+                                <Border Classes="seg" x:Name="ModeAuto" Tag="Balanced" PointerReleased="Mode_Click"
+                                           >
+                                        <TextBlock Text="Balanced" FontSize="13" FontWeight="SemiBold"/>
+                                    </Border>
+                                <Border Classes="seg" x:Name="ModeG" Tag="GMode" PointerReleased="Mode_Click"
+                                           >
+                                        <TextBlock Text="Turbo" FontSize="13" FontWeight="SemiBold"/>
+                                    </Border>
+                                <Border Classes="seg" x:Name="ModeManual" Tag="Custom" PointerReleased="Mode_Click"
+                                           >
+                                        <TextBlock Text="Manual" FontSize="13" FontWeight="SemiBold"/>
+                                    </Border>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <TextBlock x:Name="ModeHint" Margin="0,12,0,0" FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource TextTertiaryBrush}"/>
+
+                    <!-- energia da CPU enquanto o app roda -->
+                    <Grid Margin="0,12,0,0" ColumnDefinitions="Auto,*">
+                        <TextBlock Text="Power" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                        <Border Grid.Column="1" HorizontalAlignment="Right" CornerRadius="9" Padding="2" BorderThickness="1"
+                                BorderBrush="{DynamicResource ControlStrokeBrush}" Background="{DynamicResource ControlFillBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Classes="seg" x:Name="PowNone" Tag="" PointerReleased="Power_Click"
+                                        ToolTip.Tip="Keep the current CPU power setting"><TextBlock Text="Unchanged" FontSize="13" FontWeight="SemiBold"/></Border>
+                                <Border Classes="seg" x:Name="PowEco" Tag="Eco" PointerReleased="Power_Click"
+                                        ToolTip.Tip="CPU TDP 15 W"><TextBlock Text="Eco" FontSize="13" FontWeight="SemiBold"/></Border>
+                                <Border Classes="seg" x:Name="PowBalanced" Tag="Balanced" PointerReleased="Power_Click"
+                                        ToolTip.Tip="CPU TDP 45 W"><TextBlock Text="Balanced" FontSize="13" FontWeight="SemiBold"/></Border>
+                                <Border Classes="seg" x:Name="PowPerformance" Tag="Performance" PointerReleased="Power_Click"
+                                        ToolTip.Tip="CPU TDP 90 W"><TextBlock Text="Performance" FontSize="13" FontWeight="SemiBold"/></Border>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Curva (só no Manual) -->
+                    <StackPanel x:Name="CurvePanel" Margin="0,14,0,0">
+                        <Grid>
+                            <TextBlock Text="Fan curve" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Border VerticalAlignment="Center" CornerRadius="9" Padding="2" BorderThickness="1"
+                                    BorderBrush="{DynamicResource ControlStrokeBrush}"
+                                    Background="{DynamicResource ControlFillBrush}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Classes="seg" x:Name="TabGpu" Tag="Gpu" PointerReleased="Tab_Click"
+                                           >
+                                        <TextBlock Text="GPU" FontSize="13" FontWeight="SemiBold"/>
+                                    </Border>
+                                        <Border Classes="seg" x:Name="TabCpu" Tag="Cpu" PointerReleased="Tab_Click"
+                                           >
+                                        <TextBlock Text="CPU" FontSize="13" FontWeight="SemiBold"/>
+                                    </Border>
+                                    </StackPanel>
+                                </Border>
+                                <Button Content="Copy main curves" Margin="10,0,0,0" Height="30" Click="CopyMain_Click"
+                                           ToolTip.Tip="Start from the curves of the Fans page"/>
+                            </StackPanel>
+                        </Grid>
+                        <c:CurveEditor x:Name="Editor" Height="260" Margin="0,10,0,0"/>
+                        <TextBlock Margin="2,8,0,0" FontSize="11" Foreground="{DynamicResource TextTertiaryBrush}"
+                                   Text="Double-click to add. Drag to adjust. Right-click to delete."/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

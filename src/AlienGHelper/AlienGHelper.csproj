@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <!-- WinForms só para o ícone da bandeja (NotifyIcon + menu temático) e a janela do atalho G-Mode -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- exe próprio; configurações, autorun e trava de instância única são os mesmos da versão completa -->
+    <AssemblyName>AlienGHelper</AssemblyName>
+    <Product>Alien G-Helper</Product>
+    <AssemblyTitle>Alien G-Helper</AssemblyTitle>
+    <RootNamespace>TccG15</RootNamespace>
+    <Version>0.1.0</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- menos memória: coleta de lixo sem a thread de segundo plano e sem o perfil dinâmico do JIT -->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <TieredPGO>false</TieredPGO>
+    <!-- ícone do .exe (Explorer, barra de tarefas, Alt+Tab) -->
+    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- UseWindowsForms adiciona estes usings globais e eles colidem com os tipos do Avalonia (Color, Point, Application...) -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="8.0.0" />
+    <PackageReference Include="NvAPIWrapper.Net" Version="0.8.1.101" />
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.1.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\RyzenSMU.bin">
+      <LogicalName>TccG15.RyzenSMU.bin</LogicalName>
+    </EmbeddedResource>
+    <!-- ícone da barra de título -->
+    <AvaloniaResource Include="Resources\alien_icon.png" />
+    <!-- ícone das janelas e da bandeja -->
+    <EmbeddedResource Include="Resources\app.ico">
+      <LogicalName>TccG15.app.ico</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

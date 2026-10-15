@@ -1,0 +1,106 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="using:TccG15.Views"
+        x:Class="TccG15.Views.ExtraWindow"
+        Title="Alien G-Helper — Extra Settings"
+        Width="1000" Height="780" MinWidth="820" MinHeight="520"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="32"
+        Background="Transparent">
+
+    <!-- "Extra" do G-Helper: configurações em linhas à esquerda, perfis por aplicativo à direita -->
+    <Grid RowDefinitions="32,*">
+        <StackPanel Orientation="Horizontal" Spacing="8" Margin="14,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
+            <Image Source="avares://AlienGHelper/Resources/alien_icon.png" Width="16" Height="16" VerticalAlignment="Center" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+            <TextBlock Text="ALIEN G-HELPER" FontSize="12" FontWeight="Bold" LetterSpacing="0.6" VerticalAlignment="Center"/>
+            <TextBlock Text="Extra Settings" FontSize="12" Classes="secondary" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,14,*" Margin="10,4,14,14">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+
+                    <!-- ===== Appearance ===== -->
+                    <Border Classes="ghsec first">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M12 3 A9 9 0 1 0 12 21 C13.5 21 14 20 13.5 18.8 C13 17.5 14 16 15.5 16 H18 A3 3 0 0 0 21 13 A9 10 0 0 0 12 3 Z M7.5 11 H7.6 M10 7.5 H10.1 M14.5 7.5 H14.6 M17 11 H17.1"/></Canvas></Viewbox>
+                            <TextBlock Classes="sec" Text="Appearance"/>
+                        </StackPanel>
+                    </Border>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,200">
+                        <TextBlock Text="Theme"/>
+                        <ComboBox x:Name="ThemeBox" Grid.Column="1"/>
+                    </Grid>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,200">
+                        <TextBlock Text="Window Style"/>
+                        <ComboBox x:Name="StyleBox" Grid.Column="1"/>
+                    </Grid>
+                    <TextBlock x:Name="StyleHint" Classes="note" Margin="10,-4,10,4"/>
+                    <Grid Classes="ghrow" ColumnDefinitions="Auto,*">
+                        <TextBlock Text="Accent Color" Margin="0,0,12,0"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <WrapPanel x:Name="AccentSwatches" VerticalAlignment="Center"/>
+                            <TextBox x:Name="AccentHex" Width="88" Height="30" MaxLength="7" Margin="4,0,0,0" HorizontalContentAlignment="Center"
+                                     LostFocus="AccentHex_LostFocus" KeyDown="AccentHex_KeyDown" ToolTip.Tip="Any color, e.g. #FF5A1F"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- ===== Fail-safe ===== -->
+                    <Border Classes="ghsec">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M12 3 L20 6 V12 C20 16.5 16.5 20 12 21 C7.5 20 4 16.5 4 12 V6 Z M8.5 12 L11 14.5 L15.5 10"/></Canvas></Viewbox>
+                                <TextBlock Classes="sec" Text="Fail-safe"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Ellipse x:Name="FailSafeDot" Width="9" Height="9" Fill="Gray" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="FailSafeStatus" Text="Normal" FontSize="12" Margin="7,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Switch to Turbo when too hot"/>
+                        <CheckBox x:Name="FailSafeToggle" Grid.Column="1" MinWidth="0" Padding="0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,120">
+                        <TextBlock Text="CPU Threshold (°C)"/>
+                        <ComboBox x:Name="CpuLimitBox" Grid.Column="1" SelectionChanged="FailSafe_SelectionChanged"/>
+                    </Grid>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,120">
+                        <TextBlock Text="GPU Threshold (°C)"/>
+                        <ComboBox x:Name="GpuLimitBox" Grid.Column="1" SelectionChanged="FailSafe_SelectionChanged"/>
+                    </Grid>
+                    <TextBlock Classes="note"
+                               Text="Switches to Turbo (G Mode, fans on max) if a temperature stays above its threshold for a few seconds, and returns to the previous mode after it has been safe for a minute."/>
+
+                    <!-- ===== Other ===== -->
+                    <Border Classes="ghsec">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M12 8.5 A3.5 3.5 0 1 0 12.01 8.5 Z M12 2 V5 M12 19 V22 M2 12 H5 M19 12 H22 M4.9 4.9 L7 7 M17 17 L19.1 19.1 M4.9 19.1 L7 17 M17 7 L19.1 4.9"/></Canvas></Viewbox>
+                            <TextBlock Classes="sec" Text="Other"/>
+                        </StackPanel>
+                    </Border>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Minimize to tray when closing"/>
+                        <CheckBox x:Name="MinimizeToggle" Grid.Column="1" MinWidth="0" Padding="0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Run on Startup (as administrator)"/>
+                        <CheckBox x:Name="AutorunToggle" Grid.Column="1" MinWidth="0" Padding="0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <TextBlock Classes="note" Text="The G key (F17) toggles Turbo from anywhere."/>
+
+                    <Grid Margin="10,16,10,0" ColumnDefinitions="Auto,*">
+                        <Button Classes="gh" Content="Restore Defaults" Click="ResetAll_Click"
+                                ToolTip.Tip="Reset curves, fail-safe and preferences to default"/>
+                        <TextBlock Grid.Column="1" Classes="tertiary" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"
+                                   Margin="12,0,0,0" TextAlignment="Right"
+                                   Text="Based on tcc-g15 by AlexIII (GPLv3) · compact edition"/>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
+            <v:ProfilesPage x:Name="ProfilesPageView" Grid.Column="2"/>
+        </Grid>
+    </Grid>
+</Window>

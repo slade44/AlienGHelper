@@ -1,0 +1,14 @@
+# build
+bin/
+obj/
+publish/
+*.user
+*.suo
+.vs/
+.vscode/
+.idea/
+*.DotSettings.user
+
+# logs / local
+*.log
+TestResults/

@@ -1,0 +1,216 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="using:TccG15.Controls"
+        x:Class="TccG15.Views.MonitorWindow"
+        Title="Alien G-Helper — Monitor"
+        Width="860" Height="900" MinWidth="700" MinHeight="560"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="32"
+        Background="Transparent">
+    <Grid RowDefinitions="32,*">
+        <StackPanel Orientation="Horizontal" Spacing="8" Margin="14,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
+            <Image Source="avares://AlienGHelper/Resources/alien_icon.png" Width="16" Height="16" VerticalAlignment="Center" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+            <TextBlock Text="ALIEN G-HELPER" FontSize="12" FontWeight="Bold" LetterSpacing="0.6" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TitleText" Text="Monitor" FontSize="12" Classes="secondary" VerticalAlignment="Center"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10,4,14,14" Grid.IsSharedSizeScope="True">
+
+            <Grid ColumnDefinitions="*,16,*">
+                <StackPanel>
+                    <Border Classes="ghsec first">
+                <Grid ColumnDefinitions="Auto,*">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M7 7 H17 V17 H7 Z M10 10 H14 V14 H10 Z M9 3 V7 M15 3 V7 M9 17 V21 M15 17 V21 M3 9 H7 M3 15 H7 M17 9 H21 M17 15 H21"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="Processor"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="6">
+                        <Viewbox Width="13" Height="13"><Canvas Width="24" Height="24"><Path Classes="icon filled" Data="M 12.00,11.00 C 9.50,8.00 9.50,3.00 12.50,2.50 C 15.50,2.50 15.00,7.50 12.00,11.00 Z M 12.87,12.50 C 16.71,11.83 21.04,14.33 19.98,17.18 C 18.48,19.78 14.40,16.85 12.87,12.50 Z M 11.13,12.50 C 9.79,16.17 5.46,18.67 3.52,16.32 C 2.02,13.72 6.60,11.65 11.13,12.50 Z M 10,12 A 2,2 0 1 0 14,12 A 2,2 0 1 0 10,12 Z"/></Canvas></Viewbox>
+                        <TextBlock x:Name="CpuRpm" Classes="num" FontWeight="Bold" Text="-- RPM" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+                    </Border>
+                    <TextBlock x:Name="CpuModel" Classes="note" Text="—" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Margin="10,4,10,2"/>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Temperature"/>
+                        <TextBlock x:Name="CpuTemp" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Usage"/>
+                        <ProgressBar x:Name="SensCpuUsageBar" Grid.Column="1" Classes="thin" Minimum="0" Maximum="100" VerticalAlignment="Center" Margin="14,0,14,0"/>
+                        <TextBlock x:Name="SensCpuUsage" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Clock"/>
+                        <TextBlock x:Name="SensCpuClock" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Power"/>
+                        <TextBlock x:Name="SensCpuPower" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="RAM"/>
+                        <ProgressBar x:Name="SensRamBar" Grid.Column="1" Classes="thin" Minimum="0" Maximum="100" VerticalAlignment="Center" Margin="14,0,14,0"/>
+                        <TextBlock x:Name="SensRam" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <Border Classes="ghsec first">
+                <Grid ColumnDefinitions="Auto,*">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M3 7 H21 V17 H3 Z M7 17 V20 M17 17 V20 M7 10 H11 V14 H7 Z M14 10 H18 M14 14 H18"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="Graphics"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="6">
+                        <Viewbox Width="13" Height="13"><Canvas Width="24" Height="24"><Path Classes="icon filled" Data="M 12.00,11.00 C 9.50,8.00 9.50,3.00 12.50,2.50 C 15.50,2.50 15.00,7.50 12.00,11.00 Z M 12.87,12.50 C 16.71,11.83 21.04,14.33 19.98,17.18 C 18.48,19.78 14.40,16.85 12.87,12.50 Z M 11.13,12.50 C 9.79,16.17 5.46,18.67 3.52,16.32 C 2.02,13.72 6.60,11.65 11.13,12.50 Z M 10,12 A 2,2 0 1 0 14,12 A 2,2 0 1 0 10,12 Z"/></Canvas></Viewbox>
+                        <TextBlock x:Name="GpuRpm" Classes="num" FontWeight="Bold" Text="-- RPM" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+                    </Border>
+                    <TextBlock x:Name="GpuModel" Classes="note" Text="—" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Margin="10,4,10,2"/>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Temperature"/>
+                        <TextBlock x:Name="GpuTemp" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Usage"/>
+                        <ProgressBar x:Name="SensGpuUsageBar" Grid.Column="1" Classes="thin" Minimum="0" Maximum="100" VerticalAlignment="Center" Margin="14,0,14,0"/>
+                        <TextBlock x:Name="SensGpuUsage" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Clock"/>
+                        <TextBlock x:Name="SensGpuClock" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow" ToolTip.Tip="Bar: share of the current power limit">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Power"/>
+                        <ProgressBar x:Name="SensGpuPowerBar" Grid.Column="1" Classes="thin" Minimum="0" Maximum="100" VerticalAlignment="Center" Margin="14,0,14,0"/>
+                        <TextBlock x:Name="SensGpuPower" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                    <Grid Classes="mrow">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonLabel"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MonValue"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="VRAM"/>
+                        <ProgressBar x:Name="SensVramBar" Grid.Column="1" Classes="thin" Minimum="0" Maximum="100" VerticalAlignment="Center" Margin="14,0,14,0"/>
+                        <TextBlock x:Name="SensVram" Grid.Column="2" Classes="num" FontWeight="Bold" Text="—" HorizontalAlignment="Right" MinWidth="96" TextAlignment="Right"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <Border Classes="ghsec">
+                <Grid ColumnDefinitions="Auto,*">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M2 12 H6.5 L9 6 L13 18 L15.5 12 H22"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="Activity"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="6">
+                        <StackPanel x:Name="ActivityOptions" Orientation="Horizontal" Spacing="6">
+                        <ComboBox x:Name="MetricBox" Width="150" Height="28" FontSize="12" Padding="10,0" VerticalContentAlignment="Center"
+                                  SelectionChanged="Metric_Changed" ToolTip.Tip="What the chart shows for CPU and GPU"/>
+                        <ComboBox x:Name="RangeBox" Width="100" Height="28" FontSize="12" Padding="10,0" VerticalContentAlignment="Center"
+                                  SelectionChanged="Range_Changed" ToolTip.Tip="Time window"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ActivityToggle" Content="Activity monitor" MinWidth="0" Padding="6,0,0,0" VerticalAlignment="Center"
+                                  Margin="6,0,0,0" ToolTip.Tip="Shows the activity chart (off = hidden and not recorded)"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <StackPanel x:Name="ActivityBody">
+            <StackPanel Orientation="Horizontal" Spacing="6" Margin="10,8,10,0">
+                <Ellipse Width="9" Height="9" Fill="#FFA657" VerticalAlignment="Center"/>
+                <TextBlock x:Name="ActCpuLegend" Classes="num" Text="CPU --" FontSize="12.5" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Ellipse Width="9" Height="9" Fill="#6CB6FF" VerticalAlignment="Center"/>
+                <TextBlock x:Name="ActGpuLegend" Classes="num" Text="GPU --" FontSize="12.5" VerticalAlignment="Center"/>
+            </StackPanel>
+            <c:ActivityChart x:Name="Activity" Height="200" Margin="10,6,10,0"/>
+            </StackPanel>
+
+            <Border Classes="ghsec">
+                <Grid ColumnDefinitions="Auto,*">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M7 8 H17 A4 4 0 0 1 21 12 V13 A4 4 0 0 1 14 15.5 H10 A4 4 0 0 1 3 13 V12 A4 4 0 0 1 7 8 Z M7 10.5 V14.5 M5 12.5 H9 M15.5 11.5 H15.6 M17.5 13.5 H17.6"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="Game"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
+                        <TextBlock x:Name="FpsGame" Classes="tertiary" FontSize="12" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="220"/>
+                        <CheckBox x:Name="FpsToggle" Content="FPS monitor" MinWidth="0" Padding="6,0,0,0" VerticalAlignment="Center"
+                                  ToolTip.Tip="Counts frames of the game in the foreground (DirectX 9–12)"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <StackPanel x:Name="FpsBody">
+                <Grid ColumnDefinitions="*,*,*" Margin="10,8,10,0">
+                    <Border Classes="tile" Padding="12,8" Margin="0,0,4,0">
+                        <StackPanel>
+                            <TextBlock Classes="caps" Text="FPS"/>
+                            <TextBlock x:Name="FpsValue" Classes="num" FontSize="22" FontWeight="Bold" Text="--"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" Classes="tile" Padding="12,8" Margin="4,0">
+                        <StackPanel>
+                            <TextBlock Classes="caps" Text="FRAMETIME"/>
+                            <TextBlock x:Name="FpsFrameTime" Classes="num" FontSize="22" FontWeight="Bold" Text="--"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2" Classes="tile" Padding="12,8" Margin="4,0,0,0">
+                        <StackPanel>
+                            <TextBlock Classes="caps" Text="1% LOW"/>
+                            <TextBlock x:Name="FpsLow" Classes="num" FontSize="22" FontWeight="Bold" Text="--"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <c:FrameTimeGraph x:Name="FpsGraph" Height="140" Margin="10,8,10,0"
+                                  ToolTip.Tip="Frametime of the last frames, in ms: lower is smoother, spikes up are stutters"/>
+            </StackPanel>
+            <TextBlock x:Name="FpsStatus" Classes="note" Margin="10,8,10,0"/>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

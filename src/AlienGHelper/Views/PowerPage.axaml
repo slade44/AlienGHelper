@@ -1,0 +1,144 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TccG15.Views.PowerPage">
+    <!-- Coluna esquerda da janela "Fans and Power", no estilo do G-Helper: abas CPU / GPU / Advanced e sliders -->
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <Grid ColumnDefinitions="*,*,*" Margin="-3,0">
+            <Border x:Name="TabCpu" Classes="ghtab" Tag="Cpu" PointerReleased="Tab_Click"><TextBlock Text="CPU"/></Border>
+            <Border x:Name="TabGpu" Grid.Column="1" Classes="ghtab" Tag="Gpu" PointerReleased="Tab_Click"><TextBlock Text="GPU"/></Border>
+            <Border x:Name="TabAdv" Grid.Column="2" Classes="ghtab" Tag="Adv" PointerReleased="Tab_Click"><TextBlock Text="Advanced"/></Border>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,12,0,0">
+            <Ellipse x:Name="StatusDot" Width="7" Height="7" Fill="Gray" VerticalAlignment="Center"/>
+            <TextBlock x:Name="StatusText" Text="Starting…" FontSize="11" Margin="7,0,0,0" TextTrimming="CharacterEllipsis"
+                       Foreground="{DynamicResource TextTertiaryBrush}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,4,0,0">
+            <Grid>
+
+                <!-- ================= CPU ================= -->
+                <StackPanel x:Name="CpuPanel">
+                    <Border x:Name="PawnBanner" Classes="ghnote" IsVisible="False">
+                        <StackPanel>
+                            <TextBlock x:Name="PawnTitle" Text="PawnIO driver is not installed" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="PawnText" Margin="0,4,0,0" TextWrapping="Wrap" FontSize="12"
+                                       Foreground="{DynamicResource TextSecondaryBrush}"
+                                       Text="CPU power limits talk to the Ryzen SMU through the PawnIO driver. Install it, then restart this app."/>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Spacing="6">
+                                <Button x:Name="BtnPawnSite" Classes="gh" Content="Download" Click="PawnSite_Click"/>
+                                <Button x:Name="BtnPawnCopy" Classes="gh" Content="Copy winget command" Click="PawnCopy_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel x:Name="CpuSliders">
+                        <Grid Classes="slhead" ToolTip.Tip="CPU sustained power (STAPM)">
+                            <TextBlock Text="CPU Sustained (SPL)"/>
+                            <TextBlock x:Name="SplVal" Classes="v num"/>
+                        </Grid>
+                        <Slider x:Name="SplSlider" Classes="gh" Minimum="10" Maximum="110" Value="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+
+                        <Grid Classes="slhead" ToolTip.Tip="CPU long boost (slow PPT)">
+                            <TextBlock Text="CPU Slow Boost (sPPT)"/>
+                            <TextBlock x:Name="SpptVal" Classes="v num"/>
+                        </Grid>
+                        <Slider x:Name="SpptSlider" Classes="gh" Minimum="10" Maximum="110" Value="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+
+                        <Grid Classes="slhead" ToolTip.Tip="CPU short boost (fast PPT)">
+                            <TextBlock Text="CPU Fast Boost (fPPT)"/>
+                            <TextBlock x:Name="FpptVal" Classes="v num"/>
+                        </Grid>
+                        <Slider x:Name="FpptSlider" Classes="gh" Minimum="10" Maximum="110" Value="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </StackPanel>
+
+                    <TextBlock x:Name="CurrentLimitsText" Classes="note num"/>
+
+                    <Grid Classes="ghrow" ColumnDefinitions="*,Auto" Margin="10,10,10,0">
+                        <CheckBox x:Name="ApplyCpuCheck" Content="Apply Power Limits" VerticalAlignment="Center"/>
+                        <Button x:Name="BtnCpuStock" Grid.Column="1" Classes="gh" Content="Stock" Click="CpuStock_Click"
+                                ToolTip.Tip="Put the sliders back on the limits the BIOS uses in the current thermal mode"/>
+                    </Grid>
+                    <TextBlock x:Name="CpuResultText" Classes="note"/>
+                    <TextBlock Classes="note" Margin="10,8,10,0"
+                               Text="While applied, the limits are re-sent every 10 s and after every mode change or sleep, because the firmware (AMD PMF) puts its own back. sPPT ≥ SPL and fPPT ≥ sPPT."/>
+                </StackPanel>
+
+                <!-- ================= GPU ================= -->
+                <StackPanel x:Name="GpuPanel" IsVisible="False">
+                    <Grid Classes="ghrow" ColumnDefinitions="Auto,*">
+                        <Viewbox Width="18" Height="18" Margin="0,0,8,0"><Canvas Width="24" Height="24">
+                            <Path Classes="icon" Data="M3 7 H21 V17 H3 Z M7 17 V20 M17 17 V20 M7 10 H11 V14 H7 Z M14 10 H18 M14 14 H18"/>
+                        </Canvas></Viewbox>
+                        <TextBlock x:Name="GpuNameText" Grid.Column="1" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                    </Grid>
+                    <TextBlock x:Name="GpuInfoText" Classes="note" Margin="10,-6,10,0"/>
+
+                    <StackPanel x:Name="GpuControls">
+                        <StackPanel x:Name="MaxClockRow">
+                            <Grid Classes="slhead" ToolTip.Tip="Caps the core clock (nvidia-smi -lgc). Rightmost = no limit">
+                                <TextBlock Text="Core Clock Limit"/>
+                                <TextBlock x:Name="MaxClockVal" Classes="v num"/>
+                            </Grid>
+                            <Slider x:Name="MaxClockSlider" Classes="gh" Minimum="600" Maximum="2595" Value="600" TickFrequency="15" IsSnapToTickEnabled="True"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="CoreRow">
+                            <Grid Classes="slhead" ToolTip.Tip="MHz added to the GPU core clock curve">
+                                <TextBlock Text="Core Clock Offset"/>
+                                <TextBlock x:Name="CoreVal" Classes="v num"/>
+                            </Grid>
+                            <Slider x:Name="CoreSlider" Classes="gh" Minimum="-250" Maximum="250" Value="-250" TickFrequency="5" IsSnapToTickEnabled="True"/>
+                        </StackPanel>
+
+                        <Grid Classes="slhead" ToolTip.Tip="MHz added to the VRAM clock">
+                            <TextBlock Text="Memory Clock Offset"/>
+                            <TextBlock x:Name="MemVal" Classes="v num"/>
+                        </Grid>
+                        <Slider x:Name="MemSlider" Classes="gh" Minimum="-500" Maximum="500" Value="-500" TickFrequency="10" IsSnapToTickEnabled="True"/>
+
+                        <StackPanel x:Name="PowerTargetRow">
+                            <Grid Classes="slhead" ToolTip.Tip="% of the default TGP (laptops often lock this)">
+                                <TextBlock Text="GPU Power"/>
+                                <TextBlock x:Name="TargetVal" Classes="v num"/>
+                            </Grid>
+                            <Slider x:Name="TargetSlider" Classes="gh" Minimum="50" Maximum="150" Value="50" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Grid Classes="ghrow" ColumnDefinitions="*,Auto" Margin="10,10,10,0">
+                        <CheckBox x:Name="ApplyGpuCheck" Content="Apply GPU Settings" VerticalAlignment="Center"/>
+                        <Button x:Name="BtnGpuReset" Grid.Column="1" Classes="gh" Content="Reset" Click="GpuReset_Click"
+                                ToolTip.Tip="Offsets back to 0, default power target, no clock cap"/>
+                    </Grid>
+                    <TextBlock x:Name="GpuResultText" Classes="note"/>
+                </StackPanel>
+
+                <!-- ================= ADVANCED ================= -->
+                <StackPanel x:Name="AdvPanel" IsVisible="False">
+                    <Grid Classes="ghrow" ColumnDefinitions="*,170">
+                        <TextBlock Text="Windows Power Mode"/>
+                        <ComboBox x:Name="WinModeBox" Grid.Column="1"/>
+                    </Grid>
+                    <Grid Classes="ghrow" ColumnDefinitions="*,170">
+                        <TextBlock Text="CPU Boost"/>
+                        <ComboBox x:Name="BoostBox" Grid.Column="1"/>
+                    </Grid>
+                    <TextBlock x:Name="PlanInfoText" Classes="note"/>
+
+                    <Border x:Name="ClockWarn" Classes="ghnote" IsVisible="False" BorderBrush="#66FFB84D" Background="#1FFFB84D">
+                        <StackPanel>
+                            <TextBlock x:Name="ClockWarnText" TextWrapping="Wrap" FontSize="12"
+                                       Text="Your power plan keeps the CPU at base clock."/>
+                            <Button Classes="gh" Content="Unlock clocks" Click="UnlockClock_Click" Margin="0,8,0,0"
+                                    ToolTip.Tip="Active power plan, plugged in: boost Aggressive, boost policy 100 %, max state 100 %, no max frequency, EPP 25"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,60 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      PROJECT: src/AlienGHelper/AlienGHelper.csproj
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT }} -r win-x64
+
+      - name: Publish (needs .NET 8 Desktop Runtime)
+        run: >
+          dotnet publish ${{ env.PROJECT }} -c Release -r win-x64 --no-restore
+          --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+          -o out/framework
+
+      - name: Publish (self-contained)
+        run: >
+          dotnet publish ${{ env.PROJECT }} -c Release -r win-x64
+          --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+          -o out/standalone
+
+      - name: Package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item out/framework/AlienGHelper.exe dist/AlienGHelper.exe
+          Copy-Item out/standalone/AlienGHelper.exe dist/AlienGHelper-standalone.exe
+          Copy-Item LICENSE, THIRD-PARTY-NOTICES.md dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AlienGHelper
+          path: dist/
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/AlienGHelper.exe
+            dist/AlienGHelper-standalone.exe
+          generate_release_notes: true

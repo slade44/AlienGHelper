@@ -1,0 +1,170 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="using:TccG15.Controls"
+             x:Class="TccG15.Views.KeyboardPage">
+    <!-- Janela do teclado no estilo do G-Helper (como a do ROG Azoth): seções em faixas e linhas "rótulo … controle" -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10,4,14,14">
+
+            <!-- dispositivo + liga/desliga -->
+            <Grid Classes="ghrow" ColumnDefinitions="*,Auto">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Ellipse x:Name="DevDot" Width="8" Height="8" Fill="Gray" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="DeviceSubtitle" Text="Searching…" FontSize="13" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <CheckBox x:Name="PowerToggle" Grid.Column="1" Content="Lights" MinWidth="0" Padding="6,0,0,0" VerticalAlignment="Center"
+                          ToolTip.Tip="Turn the keyboard lights on or off (your colors are kept)"/>
+            </Grid>
+
+            <!-- ===== Lighting ===== -->
+            <Border Classes="ghsec">
+                <Grid ColumnDefinitions="Auto,*,260,Auto">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M12 3 V5 M5.6 5.6 L7 7 M3 12 H5 M19 12 H21 M17 7 L18.4 5.6 M7 15 A5 5 0 1 1 17 15 Z M3 19 H21"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="Lighting"/>
+                    </StackPanel>
+                    <Slider x:Name="BrightSlider" Grid.Column="2" Minimum="0" Maximum="100" VerticalAlignment="Center" Margin="0,-8"
+                            ToolTip.Tip="Brightness"/>
+                    <TextBlock x:Name="BrightVal" Grid.Column="3" Text="100 %" Classes="num" FontWeight="Bold" MinWidth="46"
+                               TextAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <Grid Classes="ghrow" ColumnDefinitions="*,270">
+                <TextBlock Text="Lighting Mode"/>
+                <ComboBox x:Name="EffectBox" Grid.Column="1" SelectionChanged="Effect_Changed"/>
+            </Grid>
+            <StackPanel x:Name="DurationRow">
+                <Grid Classes="ghrow" ColumnDefinitions="*,270">
+                    <TextBlock Text="Animation Speed"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Slider x:Name="DurationSlider" Minimum="0" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
+                                TickPlacement="BottomRight" Margin="0,-6,0,-8"
+                                ToolTip.Tip="How long each step of the effect lasts: Fast, Normal or Slow"/>
+                        <Grid>
+                            <TextBlock Text="Fast" FontSize="10" HorizontalAlignment="Left" Foreground="{DynamicResource TextTertiaryBrush}"/>
+                            <TextBlock Text="Normal" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource TextTertiaryBrush}"/>
+                            <TextBlock Text="Slow" FontSize="10" HorizontalAlignment="Right" Foreground="{DynamicResource TextTertiaryBrush}"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <!-- ===== Keys ===== -->
+            <Border Classes="ghsec">
+                <Grid ColumnDefinitions="Auto,*">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M4.5 6 H19.5 A2.5 2.5 0 0 1 22 8.5 V15.5 A2.5 2.5 0 0 1 19.5 18 H4.5 A2.5 2.5 0 0 1 2 15.5 V8.5 A2.5 2.5 0 0 1 4.5 6 Z M5.5 10 H7 M9.5 10 H11 M13.5 10 H15 M17.5 10 H19 M7.5 14 H16.5"/></Canvas></Viewbox>
+                        <TextBlock Classes="sec" Text="Keys"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
+                        <TextBlock x:Name="SwatchTitle" Text="All zones" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="SwatchHex" Text="#00E5FF" Classes="num" FontSize="12" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource TextTertiaryBrush}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid ColumnDefinitions="Auto,*" Margin="10,8,10,0">
+                <Button x:Name="BtnCustom" Classes="gh" Click="CustomOpen_Click" MinWidth="110" Margin="0,0,10,0" VerticalAlignment="Top"
+                        ToolTip.Tip="Pick any color (wheel, RGB or hex)">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Color" VerticalAlignment="Center"/>
+                        <Border x:Name="Swatch" Width="16" Height="16" CornerRadius="2" BorderThickness="1"
+                                BorderBrush="#5A808080" Background="#00E5FF" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <WrapPanel x:Name="Presets" Grid.Column="1" VerticalAlignment="Center" Margin="0,5,0,0"/>
+            </Grid>
+
+            <WrapPanel x:Name="ZoneList" Margin="10,8,10,0"/>
+
+            <!-- teclado; o seletor "Color" abre por cima dele -->
+            <Grid Margin="10,8,10,0">
+                <StackPanel x:Name="KeyboardArea">
+                    <c:KeyboardMap x:Name="KeyMap" OutlineByZone="True" MaxHeight="400"/>
+                    <TextBlock x:Name="ResultText" Classes="tertiary" Margin="0,10,0,0" FontSize="12" TextWrapping="Wrap"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <Border x:Name="CustomPanel" IsVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" ZIndex="10" Width="300"
+                        CornerRadius="6" BorderThickness="1" Padding="14,10,14,14" Background="{DynamicResource LayerBrush}"
+                        BorderBrush="{DynamicResource ControlStrokeBrush}" BoxShadow="0 8 24 0 #66000000">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="Custom color" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <Button HorizontalAlignment="Right" Padding="6" Click="CustomClose_Click" ToolTip.Tip="Close (Esc)" Classes="subtle">
+                                <Viewbox Width="12" Height="12"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M5 5 L19 19 M19 5 L5 19"/></Canvas></Viewbox>
+                            </Button>
+                        </Grid>
+                        <c:ColorWheel x:Name="Wheel" Width="180" Height="180" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,14,0,0">
+                            <TextBlock Text="R" FontWeight="SemiBold" Foreground="#FF6B6B" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox x:Name="BoxR" Width="52" MaxLength="3" HorizontalContentAlignment="Center" Margin="0,0,10,0"
+                                     LostFocus="RgbBox_LostFocus" KeyDown="RgbBox_KeyDown"/>
+                            <TextBlock Text="G" FontWeight="SemiBold" Foreground="#5BE37D" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox x:Name="BoxG" Width="52" MaxLength="3" HorizontalContentAlignment="Center" Margin="0,0,10,0"
+                                     LostFocus="RgbBox_LostFocus" KeyDown="RgbBox_KeyDown"/>
+                            <TextBlock Text="B" FontWeight="SemiBold" Foreground="#6CA8FF" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox x:Name="BoxB" Width="52" MaxLength="3" HorizontalContentAlignment="Center"
+                                     LostFocus="RgbBox_LostFocus" KeyDown="RgbBox_KeyDown"/>
+                        </StackPanel>
+                        <Grid Margin="0,10,0,0">
+                            <TextBlock Text="Hex" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                            <TextBox x:Name="HexBox" Width="110" HorizontalAlignment="Right" Text="#00E5FF" MaxLength="7"
+                                     HorizontalContentAlignment="Center" LostFocus="HexBox_LostFocus" KeyDown="HexBox_KeyDown"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- ===== Device ===== -->
+            <Border Classes="ghsec">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Viewbox Width="16" Height="16"><Canvas Width="24" Height="24"><Path Classes="icon" Data="M12 8.5 A3.5 3.5 0 1 0 12.01 8.5 Z M12 2 V5 M12 19 V22 M2 12 H5 M19 12 H22 M4.9 4.9 L7 7 M17 17 L19.1 19.1 M4.9 19.1 L7 17 M17 7 L19.1 4.9"/></Canvas></Viewbox>
+                    <TextBlock Classes="sec" Text="Device Settings"/>
+                </StackPanel>
+            </Border>
+
+            <Grid Classes="ghrow" ColumnDefinitions="*,Auto">
+                <TextBlock Text="Apply lighting when the app starts"/>
+                <CheckBox x:Name="ApplyStartToggle" Grid.Column="1" MinWidth="0" Padding="0" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Classes="ghrow" ColumnDefinitions="*,Auto"
+                  ToolTip.Tip="After the backlight times out, after sleep and after unlocking Windows">
+                <TextBlock Text="Restore lighting when the keyboard wakes up"/>
+                <CheckBox x:Name="RestoreWakeToggle" Grid.Column="1" MinWidth="0" Padding="0" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Classes="ghrow" ColumnDefinitions="*,Auto"
+                  ToolTip.Tip="Keeps your colors with the app closed, at boot and after sleep. Saved a few seconds after you stop changing them">
+                <TextBlock Text="Save lighting to the keyboard memory"/>
+                <CheckBox x:Name="SaveKeyboardToggle" Grid.Column="1" MinWidth="0" Padding="0" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Classes="ghrow" ColumnDefinitions="*,270">
+                <TextBlock Text="Device"/>
+                <ComboBox x:Name="DeviceBox" Grid.Column="1" SelectionChanged="Device_Changed"
+                          ToolTip.Tip="Index among the detected keyboards (usually 0)"/>
+            </Grid>
+            <Grid Classes="ghrow" ColumnDefinitions="*,270">
+                <TextBlock Text="Light IDs"/>
+                <TextBox x:Name="LightsBox" Grid.Column="1" Text="0,1,2,3" LostFocus="Lights_LostFocus"
+                         ToolTip.Tip="Comma-separated light IDs, left to right on the keyboard (0–255, up to 8)"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*" Margin="7,6,7,0">
+                <Button x:Name="BtnIdentify" Classes="gh" Click="Identify_Click" HorizontalAlignment="Stretch" Margin="3,0"
+                        Content="Identify zones" ToolTip.Tip="Lights each zone alone (white) so you can see which light ID it is"/>
+                <Button x:Name="BtnRescan" Grid.Column="1" Classes="gh" Click="Rescan_Click" HorizontalAlignment="Stretch" Margin="3,0"
+                        Content="Rescan device" ToolTip.Tip="Search again for Alienware lighting devices"/>
+            </Grid>
+
+            <TextBlock x:Name="DeviceInfo" Classes="note" Margin="10,10,10,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
+            <Expander Header="Log" Margin="10,10,10,0" HorizontalAlignment="Stretch">
+                <TextBox x:Name="LogBox" IsReadOnly="True" FontFamily="Cascadia Mono, Consolas" FontSize="11"
+                         Height="130" TextWrapping="NoWrap"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            </Expander>
+            <TextBlock Classes="note" Margin="10,10,10,0"
+                       Text="Close Alienware Command Center first: it resets the lights. USB HID, AlienFX APIv4 protocol ported from AlienFX-SDK by T-Troll (MIT)."/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

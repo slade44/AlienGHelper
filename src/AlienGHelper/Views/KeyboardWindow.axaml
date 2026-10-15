@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="using:TccG15.Views"
+        x:Class="TccG15.Views.KeyboardWindow"
+        Title="Alien G-Helper — Laptop Keyboard"
+        Width="1000" Height="860" MinWidth="760" MinHeight="560"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="32"
+        Background="Transparent">
+    <Grid RowDefinitions="32,*">
+        <StackPanel Orientation="Horizontal" Spacing="8" Margin="14,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
+            <Image Source="avares://AlienGHelper/Resources/alien_icon.png" Width="16" Height="16" VerticalAlignment="Center" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+            <TextBlock Text="ALIEN G-HELPER" FontSize="12" FontWeight="Bold" LetterSpacing="0.6" VerticalAlignment="Center"/>
+            <TextBlock Text="Laptop Keyboard" FontSize="12" Classes="secondary" VerticalAlignment="Center"/>
+        </StackPanel>
+        <v:KeyboardPage x:Name="PageView" Grid.Row="1"/>
+    </Grid>
+</Window>
