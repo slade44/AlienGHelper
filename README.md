@@ -10,7 +10,6 @@
 </p>
 
 <p align="center">
-  <a href="README.pt-BR.md">🇧🇷 Leia em português</a> ·
   <a href="docs/BUILDING.md">Build</a> ·
   <a href="docs/HOW-IT-WORKS.md">How it works</a> ·
   <a href="CHANGELOG.md">Changelog</a>
@@ -34,10 +33,7 @@
 | **GPU (NVIDIA)** | Core and memory clock offsets, core clock limit and power target (NVAPI / `nvidia-smi`). |
 | **Battery** | Dell BIOS charge modes: Standard, ExpressCharge, Adaptive, Primarily AC and **Custom charge limit** (e.g. stop at 80 %). Stored in the BIOS, works with the app closed. |
 | **Keyboard lighting** | AlienFX APIv4 over USB HID: per-zone colors, Static / Pulse / Breath / Spectrum / Rainbow, brightness, saved to the keyboard memory (keeps the colors at boot and with the app closed), restored after sleep. |
-| **Monitor** | CPU/GPU temperature, usage, clock, power, RAM/VRAM, fan RPM, activity chart (1/5/15 min) and an **FPS / frametime** counter for DirectX 9–12 games (ETW, like PresentMon). |
-| **App profiles** | Per game/app: thermal mode, fan curves and CPU power preset, switched automatically while the app runs. |
-| **Tray** | Tray icon with temperatures, RPM and mode in the tooltip, quick mode menu, and the **G key** toggles Turbo from anywhere. |
-| **Looks** | Compact one-column main window like G-Helper, detail windows for Fans and Power, Keyboard, Monitor and Extra. Mica or Flat, light/dark/system theme, accent color. |
+
 
 ## Requirements
 
@@ -47,15 +43,12 @@
 - Optional:
   - **[PawnIO](https://github.com/namazso/PawnIO)** driver for CPU power limits: `winget install namazso.PawnIO`
   - NVIDIA driver for the GPU features
-- **Close Alienware Command Center and Dell Power Manager** — they fight over the fans, lighting and battery settings.
 
 ### Tested hardware
 
 | Laptop | CPU / GPU | Status |
 |---|---|---|
-| Dell G15 5525 | Ryzen 7 6800H / RTX 3060 Laptop | ✅ main development machine |
-
-Other Dell G-series and Alienware laptops that expose the AWCC WMI interface (`AWCCWmiMethodFunction`) should work for fans and modes. CPU power limits need an AMD Ryzen CPU supported by the SMU module (Rembrandt, Phoenix, …). Reports for other models are welcome in the issues.
+| Dell G15 5525 | Ryzen 7 6800H / RTX 3060 Laptop | ✅ main machine |
 
 ## Download
 
@@ -99,7 +92,6 @@ Alien G-Helper stands on the shoulders of:
 - **[G-Helper](https://github.com/seerge/g-helper)** by seerge — the UI idea, PawnIO / Ryzen SMU code (GPL-3.0)
 - **[alienfx-tools / AlienFX-SDK](https://github.com/T-Troll/alienfx-tools)** by T-Troll — keyboard lighting protocol (MIT)
 - **[PawnIO](https://github.com/namazso/PawnIO)** by namazso, **[RyzenAdj](https://github.com/FlyGoat/RyzenAdj)** — SMU access and commands
-- **[NvAPIWrapper](https://github.com/falahati/NvAPIWrapper)**, **[TraceEvent](https://github.com/microsoft/perfview)**, **[Avalonia UI](https://github.com/AvaloniaUI/Avalonia)**
 
 Full notices: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
